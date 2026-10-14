@@ -1,25 +1,30 @@
+```js
 /**
- * Global Configuration for WhatsApp MD Bot
+ * Global Configuration for TATSUYA
+ * TATSUYA — ROYAL INTELLIGENCE
  */
 
 module.exports = {
     // Bot Owner Configuration
-    ownerNumber: ['9876543210'], // Add your number without + or spaces (e.g., 919876543210)
-    ownerName: ['Knight Bot'], // Owner names corresponding to ownerNumber array
-    
+    ownerNumber: ['254782902024'],
+    ownerName: ['PROSKI'],
+
     // Bot Configuration
-    botName: 'Knight Bot Mini',
-    prefix: ',',
+    botName: 'TATSUYA',
+    botTitle: 'ROYAL INTELLIGENCE',
+    prefix: '!',
     sessionName: 'session',
     sessionID: process.env.SESSION_ID || '',
-    newsletterJid: '120363161513685998@newsletter', // Newsletter JID for menu forwarding
-    updateZipUrl: 'https://github.com/mruniquehacker/KnightBot-Mini/archive/refs/heads/main.zip', // URL to latest code zip for .update command
-    
+
+    // Optional integrations
+    newsletterJid: '',
+    updateZipUrl: '',
+
     // Sticker Configuration
-    packname: 'Knight Bot',
-    
+    packname: 'TATSUYA — ROYAL INTELLIGENCE',
+
     // Bot Behavior
-    selfMode: false, // Private mode - only owner can use commands
+    selfMode: false,
     autoRead: false,
     autoTyping: false,
     autoBio: false,
@@ -27,70 +32,87 @@ module.exports = {
     autoReact: false,
     autoReactMode: 'bot',
     autoDownload: false,
-    
+
     // Group Settings Defaults
     defaultGroupSettings: {
-      antilink: false,
-      antilinkAction: 'delete', // 'delete', 'kick', 'warn'
-      antitag: false,
-      antitagAction: 'delete',
-      antiall: false, // Owner only - blocks all messages from non-admins
-      antiviewonce: false,
-      antibot: false,
-      antibotAction: 'warn', // 'warn' | 'kick'
-      anticall: false, // Anti-call feature
-      antigroupmention: false, // Anti-group mention feature
-      antigroupmentionAction: 'delete', // 'delete', 'kick'
-      antigroupstatus: false, // Block group status posts
-      antigroupstatusAction: 'delete', // 'delete', 'kick'
-      antisticker: false, // Stickers not allowed in group
-      antistickerAction: 'delete', // 'delete', 'kick'
-      antibadword: false, // Block bad words in group
-      antibadwordAction: 'delete', // 'delete', 'kick', 'warn'
-      welcome: false,
-      welcomeMessage: '╭╼━≪•𝙽𝙴𝚆 𝙼𝙴𝙼𝙱𝙴𝚁•≫━╾╮\n┃𝚆𝙴𝙻𝙲𝙾𝙼𝙴: @user 👋\n┃Member count: #memberCount\n┃𝚃𝙸𝙼𝙴: time⏰\n╰━━━━━━━━━━━━━━━╯\n\n*@user* Welcome to *@group*! 🎉\n*Group 𝙳𝙴𝚂𝙲𝚁𝙸𝙿𝚃𝙸𝙾𝙽*\ngroupDesc\n\n> *ᴘᴏᴡᴇʀᴇᴅ ʙʏ botName*',
-      goodbye: false,
-      goodbyeMessage: 'Goodbye @user 👋 We will never miss you!',
-      antiSpam: false,
-      antidelete: false,
-      nsfw: false,
-      detect: false,
-      chatbot: false,
-      autosticker: false // Auto-convert images/videos to stickers
+        antilink: false,
+        antilinkAction: 'delete',
+
+        antitag: false,
+        antitagAction: 'delete',
+
+        antiall: false,
+        antiviewonce: false,
+
+        antibot: false,
+        antibotAction: 'warn',
+
+        anticall: false,
+
+        antigroupmention: false,
+        antigroupmentionAction: 'delete',
+
+        antigroupstatus: false,
+        antigroupstatusAction: 'delete',
+
+        antisticker: false,
+        antistickerAction: 'delete',
+
+        antibadword: false,
+        antibadwordAction: 'delete',
+
+        welcome: false,
+        welcomeMessage:
+            '╭╼━≪• 𝚆𝙴𝙻𝙲𝙾𝙼𝙴 •≫━╾╮\n' +
+            '┃ Welcome: @user 👋\n' +
+            '┃ Members: #memberCount\n' +
+            '┃ Time: time ⏰\n' +
+            '╰━━━━━━━━━━━━━━━╯\n\n' +
+            '*Welcome to @group!* 🎉\n' +
+            'groupDesc\n\n' +
+            '> Powered by TATSUYA',
+
+        goodbye: false,
+        goodbyeMessage: 'Goodbye @user 👋',
+
+        antiSpam: false,
+        antidelete: false,
+        nsfw: false,
+        detect: false,
+        chatbot: false,
+        autosticker: false
     },
-    
-    // API Keys (add your own)
+
+    // API Keys
     apiKeys: {
-      // Add API keys here if needed
-      openai: '',
-      deepai: '',
-      remove_bg: ''
+        openai: process.env.OPENAI_API_KEY || '',
+        deepai: process.env.DEEPAI_API_KEY || '',
+        remove_bg: process.env.REMOVE_BG_API_KEY || ''
     },
-    
+
     // Message Configuration
     messages: {
-      wait: '⏳ Please wait...',
-      success: '✅ Success!',
-      error: '❌ Error occurred!',
-      ownerOnly: '👑 This command is only for bot owner!',
-      adminOnly: '🛡️ This command is only for group admins!',
-      groupOnly: '👥 This command can only be used in groups!',
-      privateOnly: '💬 This command can only be used in private chat!',
-      botAdminNeeded: '🤖 Bot needs to be admin to execute this command!',
-      invalidCommand: '❓ Invalid command! Type .menu for help'
+        wait: '⏳ Please wait...',
+        success: '✅ Success!',
+        error: '❌ An error occurred!',
+        ownerOnly: '👑 This command is only for the bot owner!',
+        adminOnly: '🛡️ This command is only for group admins!',
+        groupOnly: '👥 This command can only be used in groups!',
+        privateOnly: '💬 This command can only be used in private chat!',
+        botAdminNeeded: '🤖 The bot needs to be an admin to do that!',
+        invalidCommand: '❓ Invalid command! Type !menu for help.'
     },
-    
+
     // Timezone
-    timezone: 'Asia/Kolkata',
-    
+    timezone: 'Africa/Nairobi',
+
     // Limits
     maxWarnings: 3,
-    
-    // Social Links (optional)
+
+    // Social Links
     social: {
-      github: 'https://github.com/mruniquehacker',
-      instagram: 'https://instagram.com/yourusername',
-      youtube: 'http://youtube.com/@mr_unique_hacker'
+        github: 'https://github.com/kceedragon-dev',
+        instagram: '',
+        youtube: ''
     }
 };
-  
