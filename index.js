@@ -1,4 +1,3 @@
-```js
 /**
  * TATSUYA — ROYAL INTELLIGENCE
  * WhatsApp bot main entry point.
