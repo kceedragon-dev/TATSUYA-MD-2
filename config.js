@@ -1,118 +1,117 @@
-```js
 /**
- * Global Configuration for TATSUYA
  * TATSUYA — ROYAL INTELLIGENCE
+ * Global configuration
  */
 
 module.exports = {
-    // Bot Owner Configuration
-    ownerNumber: ['254782902024'],
-    ownerName: ['PROSKI'],
+  // Owner configuration
+  ownerNumber: [
+    '254782902024'
+  ],
+  ownerName: [
+    'PROSKI'
+  ],
 
-    // Bot Configuration
-    botName: 'TATSUYA',
-    botTitle: 'ROYAL INTELLIGENCE',
-    prefix: '!',
-    sessionName: 'session',
-    sessionID: process.env.SESSION_ID || '',
+  // Bot configuration
+  botName: 'TATSUYA',
+  botTitle: 'ROYAL INTELLIGENCE',
+  prefix: '!',
+  sessionName: 'session',
+  sessionID: process.env.SESSION_ID || '',
 
-    // Optional integrations
-    newsletterJid: '',
-    updateZipUrl: '',
+  // International pairing number
+  phoneNumber: process.env.PAIRING_NUMBER || '',
 
-    // Sticker Configuration
-    packname: 'TATSUYA — ROYAL INTELLIGENCE',
+  // Optional links
+  newsletterJid: '',
+  updateZipUrl: '',
 
-    // Bot Behavior
-    selfMode: false,
-    autoRead: false,
-    autoTyping: false,
-    autoBio: false,
-    autoSticker: false,
-    autoReact: false,
-    autoReactMode: 'bot',
-    autoDownload: false,
+  // Sticker configuration
+  packname: 'TATSUYA — ROYAL INTELLIGENCE',
+  author: 'PROSKI',
 
-    // Group Settings Defaults
-    defaultGroupSettings: {
-        antilink: false,
-        antilinkAction: 'delete',
+  // Bot behavior
+  selfMode: false,
+  autoRead: false,
+  autoTyping: false,
+  autoBio: false,
+  autoSticker: false,
+  autoReact: false,
+  autoReactMode: 'bot',
+  autoDownload: false,
 
-        antitag: false,
-        antitagAction: 'delete',
+  // Group defaults
+  defaultGroupSettings: {
+    antilink: false,
+    antilinkAction: 'delete',
 
-        antiall: false,
-        antiviewonce: false,
+    antitag: false,
+    antitagAction: 'delete',
 
-        antibot: false,
-        antibotAction: 'warn',
+    antiall: false,
+    antiviewonce: false,
 
-        anticall: false,
+    antibot: false,
+    antibotAction: 'warn',
 
-        antigroupmention: false,
-        antigroupmentionAction: 'delete',
+    anticall: false,
 
-        antigroupstatus: false,
-        antigroupstatusAction: 'delete',
+    antigroupmention: false,
+    antigroupmentionAction: 'delete',
 
-        antisticker: false,
-        antistickerAction: 'delete',
+    antigroupstatus: false,
+    antigroupstatusAction: 'delete',
 
-        antibadword: false,
-        antibadwordAction: 'delete',
+    antisticker: false,
+    antistickerAction: 'delete',
 
-        welcome: false,
-        welcomeMessage:
-            '╭╼━≪• 𝚆𝙴𝙻𝙲𝙾𝙼𝙴 •≫━╾╮\n' +
-            '┃ Welcome: @user 👋\n' +
-            '┃ Members: #memberCount\n' +
-            '┃ Time: time ⏰\n' +
-            '╰━━━━━━━━━━━━━━━╯\n\n' +
-            '*Welcome to @group!* 🎉\n' +
-            'groupDesc\n\n' +
-            '> Powered by TATSUYA',
+    antibadword: false,
+    antibadwordAction: 'delete',
 
-        goodbye: false,
-        goodbyeMessage: 'Goodbye @user 👋',
+    welcome: false,
+    welcomeMessage:
+      'Welcome @user to @group!',
 
-        antiSpam: false,
-        antidelete: false,
-        nsfw: false,
-        detect: false,
-        chatbot: false,
-        autosticker: false
-    },
+    goodbye: false,
+    goodbyeMessage:
+      'Goodbye @user!',
 
-    // API Keys
-    apiKeys: {
-        openai: process.env.OPENAI_API_KEY || '',
-        deepai: process.env.DEEPAI_API_KEY || '',
-        remove_bg: process.env.REMOVE_BG_API_KEY || ''
-    },
+    antiSpam: false,
+    antidelete: false,
+    nsfw: false,
+    detect: false,
+    chatbot: false,
+    autosticker: false
+  },
 
-    // Message Configuration
-    messages: {
-        wait: '⏳ Please wait...',
-        success: '✅ Success!',
-        error: '❌ An error occurred!',
-        ownerOnly: '👑 This command is only for the bot owner!',
-        adminOnly: '🛡️ This command is only for group admins!',
-        groupOnly: '👥 This command can only be used in groups!',
-        privateOnly: '💬 This command can only be used in private chat!',
-        botAdminNeeded: '🤖 The bot needs to be an admin to do that!',
-        invalidCommand: '❓ Invalid command! Type !menu for help.'
-    },
+  // API keys
+  apiKeys: {
+    openai: process.env.OPENAI_API_KEY || '',
+    deepai: process.env.DEEPAI_API_KEY || '',
+    remove_bg: process.env.REMOVE_BG_API_KEY || ''
+  },
 
-    // Timezone
-    timezone: 'Africa/Nairobi',
+  // Bot messages
+  messages: {
+    wait: '⏳ Please wait...',
+    success: '✅ Success!',
+    error: '❌ An error occurred.',
+    ownerOnly: '👑 This command is for the bot owner only!',
+    adminOnly: '🛡️ This command requires a group admin.',
+    groupOnly: '👥 This command can only be used in groups.',
+    privateOnly: '💬 This command can only be used in private chat.',
+    botAdminNeeded: '🤖 The bot must be a group admin.',
+    invalidCommand: '❓ Invalid command! Type !menu for help.'
+  },
 
-    // Limits
-    maxWarnings: 3,
+  // Timezone and limits
+  timezone: 'Africa/Lagos',
+  maxWarnings: 3,
 
-    // Social Links
-    social: {
-        github: 'https://github.com/kceedragon-dev',
-        instagram: '',
-        youtube: ''
-    }
+  // Social links
+  social: {
+    github: 'https://github.com/kceedragon-dev',
+    instagram: '',
+    youtube: ''
+  }
 };
