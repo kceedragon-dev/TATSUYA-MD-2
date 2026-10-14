@@ -650,3 +650,4 @@ process.on('unhandledRejection', err => {
 
 // Export the store for commands that need it.
 module.exports = { store };
+
