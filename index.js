@@ -1,8 +1,9 @@
-
+```js
 /**
  * TATSUYA — ROYAL INTELLIGENCE
  * WhatsApp bot main entry point.
  */
+
 process.env.PUPPETEER_SKIP_DOWNLOAD = 'true';
 process.env.PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = 'true';
 process.env.PUPPETEER_CACHE_DIR =
@@ -179,8 +180,8 @@ function scheduleReconnect(delay = 3000) {
   }, delay);
 }
 
-// Quiet Baileys logs and redact sensitive session fields.
-const createSuppressedLogger = (level = 'silent') => {
+// Log useful Baileys diagnostics while redacting sensitive session fields.
+const createSuppressedLogger = (level = 'warn') => {
   try {
     return pino({
       level,
@@ -193,7 +194,7 @@ const createSuppressedLogger = (level = 'silent') => {
       ]
     });
   } catch (err) {
-    return pino({ level: 'silent' });
+    return pino({ level: 'warn' });
   }
 };
 
@@ -242,7 +243,7 @@ async function startBot() {
     await useMultiFileAuthState(sessionFolder);
 
   const { version } = await fetchLatestBaileysVersion();
-  const suppressedLogger = createSuppressedLogger('silent');
+  const suppressedLogger = createSuppressedLogger('warn');
 
   const sock = makeWASocket({
     version,
@@ -273,22 +274,17 @@ async function startBot() {
       const shouldReconnect =
         statusCode !== DisconnectReason.loggedOut;
 
-      if (
-        statusCode === 515 ||
-        statusCode === 503 ||
-        statusCode === 408
-      ) {
-        console.log(
-          `⚠️ Connection closed (${statusCode}). Reconnecting...`
-        );
-      } else {
-        console.log(
-          'Connection closed due to:',
-          errorMessage,
-          '\nReconnecting:',
-          shouldReconnect
-        );
-      }
+      // Report disconnect details for Railway diagnostics.
+      // Never print authentication credentials or cryptographic keys.
+      console.warn(
+        '⚠️ WhatsApp connection closed.',
+        'Status code:',
+        statusCode ?? 'unknown',
+        'Reason:',
+        errorMessage,
+        'Reconnecting:',
+        shouldReconnect
+      );
 
       if (shouldReconnect) {
         scheduleReconnect(
@@ -366,9 +362,9 @@ async function startBot() {
   // TATSUYA INTERNATIONAL PHONE-NUMBER PAIRING
   // ------------------------------------------------------
   // Set PAIRING_NUMBER in Railway Variables.
-  // Include the country calling code. Digits only is preferred.
-  // Example format: 2348012345678 (Nigeria)
-  // This setting also supports numbers from other countries.
+  // Include the country calling code.
+  // Example: 254782902024 (Kenya)
+  // Digits only is preferred.
   // ------------------------------------------------------
 
   const pairingNumberRaw =
@@ -382,8 +378,7 @@ async function startBot() {
         '🔐 Pairing required: set PAIRING_NUMBER in Railway Variables.'
       );
     } else {
-      // Accept formats such as +44 7700 900123 or 1-202-555-0123.
-      // Non-digit characters are removed before requesting the code.
+      // Accept formats such as +254 782 902024.
       const pairingNumber = String(pairingNumberRaw).replace(/\D/g, '');
 
       if (!pairingNumber) {
@@ -391,10 +386,18 @@ async function startBot() {
           '❌ Invalid PAIRING_NUMBER. Include the country calling code.'
         );
       } else {
+        console.log(
+          '🔐 WhatsApp pairing: requesting a code for the configured number.'
+        );
+
         setTimeout(async () => {
           try {
-            // Do not request a code if the session has already registered.
-            if (state.creds.registered) return;
+            if (state.creds.registered) {
+              console.log(
+                '🔐 Pairing skipped: this session is already registered.'
+              );
+              return;
+            }
 
             const pairingCode =
               await sock.requestPairingCode(pairingNumber);
@@ -563,15 +566,12 @@ async function startBot() {
   sock.ev.on('error', error => {
     const statusCode = error?.output?.statusCode;
 
-    if (
-      statusCode === 515 ||
-      statusCode === 503 ||
-      statusCode === 408
-    ) {
-      return;
-    }
-
-    console.error('Socket error:', error.message || error);
+    console.error(
+      '⚠️ Socket error. Status code:',
+      statusCode ?? 'unknown',
+      'Reason:',
+      error?.message || error
+    );
   });
 
   return sock;
@@ -650,3 +650,4 @@ process.on('unhandledRejection', err => {
 
 // Export the store for commands that need it.
 module.exports = { store };
+```
